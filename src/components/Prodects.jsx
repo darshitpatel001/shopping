@@ -1,5 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
+import { NavLink } from 'react-router-dom'
 
 const Prodects = () => {
 
@@ -11,9 +14,10 @@ const Prodects = () => {
     useEffect(() => {
         const getProducts = async () => {
             setloading(true);
-            const response = await fetch('https://fakestoreapi.com/products');
+            const response = await fetch("https://fakestoreapi.com/products");
             if (componentMounted) {
                 setdata(await response.clone().json());
+                setfilter(await response.json());
                 setloading(false);
                 console.log(filter)
             }
@@ -27,32 +31,47 @@ const Prodects = () => {
     const Loading = () => {
         return (
             <>
-                Loading....
+            <div className="col-md-3">
+                <Skeleton height={350}/>
+            </div>
+            <div className="col-md-3">
+                <Skeleton height={350}/>
+            </div>
+            <div className="col-md-3">
+                <Skeleton height={350}/>
+            </div>
+            <div className="col-md-3">
+                <Skeleton height={350}/>
+            </div>
             </>
         )
     }
 
+    const filterProduct = (cat) =>{
+        const updatelist = data.filter((x)=>x.category === cat);
+        setfilter(updatelist);
+    }
     const Showproducts = () => {
         return (
             <>
-                <div className='buttons d-flex justify-content-center'>
-                    <button className='btn btn-outline-dark me-2'>All</button>
-                    <button className='btn btn-outline-dark me-2'>Men'S Clothig</button>
-                    <button className='btn btn-outline-dark me-2'>Women'S Clothig</button>
-                    <button className='btn btn-outline-dark me-2'>Jewelery</button>
-                    <button className='btn btn-outline-dark me-2'>Electronic</button>
+                <div className='buttons d-flex justify-content-center mb-4 pb-4'>
+                    <button className='btn btn-outline-dark me-2' onClick={()=>setfilter(data)}>All</button>
+                    <button className='btn btn-outline-dark me-2' onClick={()=>filterProduct("men's clothing")}>Men'S Clothig</button>
+                    <button className='btn btn-outline-dark me-2' onClick={()=>filterProduct("women's clothing")}>Women'S Clothig</button>
+                    <button className='btn btn-outline-dark me-2' onClick={()=>filterProduct("jewelery")}>Jewelery</button>
+                    <button className='btn btn-outline-dark me-2' onClick={()=>filterProduct("electronics")}>Electronic</button>
                 </div>
                 {
                     filter.map((product) => {
                         return (
                             <>
-                                <div className="col-md-3">
-                                    <div class="card">
-                                        <img src={product.image} class="card-img-top" alt={product.title} />
-                                        <div class="card-body">
-                                            <h5 class="card-title">{product.title}</h5>
-                                            <p class="card-text">${product.price}</p>
-                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <div className="col-md-3 mb-4">
+                                    <div className="card h-100 text-center p-4" key={product.id}>
+                                        <img src={product.image} class="card-img-top" alt={product.title} height="250px" />
+                                        <div className="card-body">
+                                            <h5 className="card-title mb-0">{product.title.substring(0,12)}...</h5>
+                                            <p className="card-text lead fw-bold">${product.price}</p>
+                                            <NavLink to={`/products/${product.id}`} className="btn btn-outline-dark">Buy Now</NavLink>
                                         </div>
                                     </div>
                                 </div>
