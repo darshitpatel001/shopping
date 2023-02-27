@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import { useState, useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css'
-import { NavLink } from 'react-router-dom'
+import 'react-loading-skeleton/dist/skeleton.css';
+import { NavLink } from 'react-router-dom';
 
 const Prodects = () => {
 
