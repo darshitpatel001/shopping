@@ -3,6 +3,10 @@ import { useSelector } from 'react-redux';
 
 
 const Cart = () => {
+
+    const handleButton = () =>{
+        
+    }
     return (
         <div>
             <div>
