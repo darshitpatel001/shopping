@@ -54,12 +54,13 @@ const Prodects = () => {
     const Showproducts = () => {
         return (
             <>
+            <div className='row'></div>
                 <div className='buttons d-flex justify-content-center mb-4 pb-4'>
-                    <button className='btn btn-outline-dark me-2' onClick={()=>setfilter(data)}>All</button>
-                    <button className='btn btn-outline-dark me-2' onClick={()=>filterProduct("men's clothing")}>Men'S Clothig</button>
-                    <button className='btn btn-outline-dark me-2' onClick={()=>filterProduct("women's clothing")}>Women'S Clothig</button>
-                    <button className='btn btn-outline-dark me-2' onClick={()=>filterProduct("jewelery")}>Jewelery</button>
-                    <button className='btn btn-outline-dark me-2' onClick={()=>filterProduct("electronics")}>Electronic</button>
+                    <button className='btn btn-outline-dark me-2 col-sm-12 col-lg-2' onClick={()=>setfilter(data)}>All</button>
+                    <button className='btn btn-outline-dark me-2 col-sm-12 col-lg-2' onClick={()=>filterProduct("men's clothing")}>Men'S Clothig</button>
+                    <button className='btn btn-outline-dark me-2 col-sm-12 col-lg-2' onClick={()=>filterProduct("women's clothing")}>Women'S Clothig</button>
+                    <button className='btn btn-outline-dark me-2 col-sm-12 col-lg-2' onClick={()=>filterProduct("jewelery")}>Jewelery</button>
+                    <button className='btn btn-outline-dark me-2 col-sm-12 col-lg-2' onClick={()=>filterProduct("electronics")}>Electronic</button>
                 </div>
                 {
                     filter.map((product) => {
